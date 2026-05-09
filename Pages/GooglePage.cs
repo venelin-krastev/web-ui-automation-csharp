@@ -39,4 +39,9 @@ public class GooglePage
 
         wait.Until(d => !d.Title.Equals("Google") && d.Title.Length > 0);
     }
+
+    public bool HasResults()
+    {
+        return driver.Url.Contains("?q=") || driver.Url.Contains("&q=");
+    }
 }

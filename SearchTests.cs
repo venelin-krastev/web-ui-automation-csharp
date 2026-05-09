@@ -44,6 +44,14 @@ public class SearchTests
     }
 
 
+    [Test]
+    public void SearchReturnsAtLeastOneResult()
+    {
+        googlePage.Open();
+        googlePage.Search("Selenium C#");
+        Assert.That(googlePage.HasResults(), Is.True);
+    }
+
     [OneTimeTearDown]
     public void TearDown()
     {
