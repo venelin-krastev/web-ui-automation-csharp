@@ -17,6 +17,7 @@ public class Tests
     }
 
     [Test]
+    [Category("Smoke")]
     public void GoogleTitleIsCorrect()
     {
         googlePage.Open();
@@ -32,6 +33,7 @@ public class Tests
     }
 
     [Test]
+    [Ignore("Google consent banner breaks this test intermittently")]
     public void GoogleTitleStartsWithGoogle()
     {
         googlePage.Open();
