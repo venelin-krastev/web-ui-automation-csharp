@@ -33,6 +33,17 @@ public class SearchTests
         Assert.That(driver.Title, Does.Contain("CSharp"));
     }
 
+    [TestCase("Selenium")]
+    [TestCase("NUnit")]
+    [TestCase("CSharp")]
+    public void SearchReturnsResultsFor(string query)
+    {
+        googlePage.Open();
+        googlePage.Search(query);
+        Assert.That(driver.Title, Does.Contain(query));
+    }
+
+
     [TearDown]
     public void TearDown()
     {
