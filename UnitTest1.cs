@@ -31,6 +31,22 @@ public class Tests
         Assert.That(driver.Title, Does.Contain("Selenium"));
     }
 
+    [Test]
+    public void GoogleTitleStartsWithGoogle()
+    {
+        googlePage.Open();
+        Assert.That(googlePage.GetTitle(), Does.StartWith("Google"));
+    }
+
+    [Test]
+    public void GoogleSearchBoxIsVisible()
+    {
+        googlePage.Open();
+        IWebElement searchBox = driver.FindElement(By.CssSelector("textarea[name='q']"));
+        Assert.That(searchBox.Displayed, Is.True);
+    }
+
+
     [TearDown]
     public void TearDown()
     {
