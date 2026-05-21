@@ -13,8 +13,10 @@ Automated UI tests using Selenium WebDriver, C#, and NUnit.
 SeleniumBasics/
   Pages/
     GooglePage.cs       # Page Object for Google homepage
+    LoginPage.cs        # Page Object for login form
   UnitTest1.cs          # Core Google tests
   SearchTests.cs        # Parameterized search tests
+  LoginTests.cs         # Login success and failure scenarios
 ```
 
 ## Tests
@@ -47,6 +49,14 @@ Run only Smoke tests:
 ```bash
 dotnet test --filter "TestCategory=Smoke"
 ```
+
+### LoginTests.cs
+| Test | Description |
+|---|---|
+| `SuccessfulLoginRedirectsToSecurePage` | Verifies redirect to /secure after valid login |
+| `SuccessfulLoginShowsSuccessMessage` | Verifies success flash message after login |
+| `InvalidPasswordShowsErrorMessage` | Verifies error message on wrong password |
+| `InvalidUsernameShowsErrorMessage` | Verifies error message on wrong username |
 
 ## Key Concepts Demonstrated
 - Page Object Model (POM)
