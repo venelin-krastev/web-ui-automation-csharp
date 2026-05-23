@@ -18,37 +18,57 @@ public class LoginTests
     }
 
     [Test]
-    public void SuccessfulLoginRedirectsToSecurePage()
+    public void Should_RedirectToSecurePage_When_ValidCredentialsEntered()
     {
+        // Arrange
         loginPage.Open();
+
+        // Act
         loginPage.Login("tomsmith", "SuperSecretPassword!");
+
+        // Assert
         Assert.That(driver.Url, Does.Contain("/secure"),
             "Successful login should redirect to /secure");
     }
 
     [Test]
-    public void SuccessfulLoginShowsSuccessMessage()
+    public void Should_ShowSuccessFlashMessage_When_ValidCredentialsEntered()
     {
+        // Arrange
         loginPage.Open();
+
+        // Act
         loginPage.Login("tomsmith", "SuperSecretPassword!");
+
+        // Assert
         Assert.That(loginPage.GetFlashMessage(), Does.Contain("You logged into a secure area!"),
             "Successful login should show success flash message");
     }
 
     [Test]
-    public void InvalidPasswordShowsErrorMessage()
+    public void Should_ShowInvalidPasswordError_When_WrongPasswordEntered()
     {
+        // Arrange
         loginPage.Open();
+
+        // Act
         loginPage.Login("tomsmith", "wrongpassword");
+
+        // Assert
         Assert.That(loginPage.GetFlashMessage(), Does.Contain("Your password is invalid!"),
             "Wrong password should show error flash message");
     }
 
     [Test]
-    public void InvalidUsernameShowsErrorMessage()
+    public void Should_ShowInvalidUsernameError_When_WrongUsernameEntered()
     {
+        // Arrange
         loginPage.Open();
+
+        // Act
         loginPage.Login("wronguser", "SuperSecretPassword!");
+
+        // Assert
         Assert.That(loginPage.GetFlashMessage(), Does.Contain("Your username is invalid!"),
             "Wrong username should show error flash message");
     }
