@@ -15,9 +15,11 @@ Pages/
   LoginPage.cs        # Login form interactions
   DropdownPage.cs     # Dropdown selection via SelectElement
   CheckboxPage.cs     # Checkbox state management
+  AlertPage.cs        # Browser alert, confirm and prompt dialogs
 LoginTests.cs         # Login success and failure scenarios
 DropdownTests.cs      # Dropdown selection by text and value
 CheckboxTests.cs      # Checkbox check/uncheck and default state
+AlertTests.cs         # Simple, confirm and prompt alert scenarios
 ```
 
 ## Tests
@@ -45,6 +47,14 @@ CheckboxTests.cs      # Checkbox check/uncheck and default state
 | `Should_BeUnchecked_When_CheckboxTwoIsUnchecked` | Checkbox 2 can be unchecked |
 | `Should_BeCheckedByDefault_When_PageLoads` | Checkbox 2 is checked by default |
 
+### AlertTests.cs
+| Test | Description |
+|------|-------------|
+| `Should_ShowSuccessResult_When_SimpleAlertAccepted` | Simple alert accepted shows success |
+| `Should_ShowOkResult_When_ConfirmAlertAccepted` | Confirm alert accepted shows Ok |
+| `Should_ShowCancelResult_When_ConfirmAlertDismissed` | Confirm alert dismissed shows Cancel |
+| `Should_ShowTypedText_When_PromptAlertFilled` | Prompt alert shows typed text in result |
+
 ## Key Concepts Demonstrated
 - Page Object Model (POM)
 - Explicit waits with `WebDriverWait`
@@ -53,6 +63,7 @@ CheckboxTests.cs      # Checkbox check/uncheck and default state
 - `.Selected` property for checkbox state
 - Parameterized tests with `[TestCase]`
 - Arrange / Act / Assert structure
+- `SwitchTo().Alert()` for browser dialog handling
 
 ## How to Run
 ```bash
