@@ -19,6 +19,9 @@ Pages/
   DynamicLoadingPage.cs  # Waiting for dynamically loaded content
   FileUploadPage.cs      # File upload via SendKeys
   HoverPage.cs           # Mouse hover with Actions class
+  IFramePage.cs          # Switching into and out of IFrames
+  WindowPage.cs          # Multiple window/tab handling
+  DragAndDropPage.cs     # Drag and drop with Actions class
 LoginTests.cs            # Login success and failure scenarios
 DropdownTests.cs         # Dropdown selection by text and value
 CheckboxTests.cs         # Checkbox check/uncheck and default state
@@ -26,6 +29,9 @@ AlertTests.cs            # Simple, confirm and prompt alert scenarios
 DynamicLoadingTests.cs   # Dynamic content loading (Example 1 and 2)
 FileUploadTests.cs       # File upload and success verification
 HoverTests.cs            # Hover over avatars and caption visibility
+IFrameTests.cs           # Switching into and out of IFrames
+WindowTests.cs           # Multiple window and tab switching
+DragAndDropTests.cs      # Drag and drop interaction
 ```
 
 ## Tests
@@ -82,6 +88,25 @@ HoverTests.cs            # Hover over avatars and caption visibility
 | `Should_ShowCorrectCaption_When_HoveringOverAvatar(1, "user2")` | Parameterized hover test — user2 |
 | `Should_ShowCorrectCaption_When_HoveringOverAvatar(2, "user3")` | Parameterized hover test — user3 |
 
+### IFrameTests.cs
+| Test | Description |
+|------|-------------|
+| `Should_TypeInIFrame_When_SwitchedToFrame` | Types text in IFrame editor and verifies content |
+| `Should_ReturnToMainContent_When_SwitchedBack` | Returns to main page after IFrame interaction |
+
+### WindowTests.cs
+| Test | Description |
+|------|-------------|
+| `Should_OpenNewWindow_When_LinkClicked` | Clicking link opens a second window |
+| `Should_SwitchToNewWindow_When_NewWindowOpened` | Switches to new window and verifies title |
+| `Should_ReturnToOriginalWindow_When_SwitchedBack` | Returns to original window after switching |
+
+### DragAndDropTests.cs
+| Test | Description |
+|------|-------------|
+| `Should_HaveCorrectInitialState_When_PageLoads` | Columns A and B are in correct initial order |
+| `Should_SwapColumns_When_ColumnADraggedToColumnB` | Dragging column A to B swaps their positions |
+
 ## Key Concepts Demonstrated
 - Page Object Model (POM)
 - Explicit waits with `WebDriverWait`
@@ -91,9 +116,11 @@ HoverTests.cs            # Hover over avatars and caption visibility
 - Parameterized tests with `[TestCase]`
 - Arrange / Act / Assert structure
 - `SwitchTo().Alert()` for browser dialog handling
-- `Actions` class for mouse hover interactions
+- `Actions` class for mouse hover and drag and drop interactions
 - `SendKeys` for file upload (bypassing OS dialog)
 - Test data management with `File.WriteAllText` / `File.Delete`
+- `SwitchTo().Frame()` and `SwitchTo().DefaultContent()` for IFrame handling
+- Multiple window/tab management with `WindowHandles` and `SwitchTo().Window()`
 
 ## How to Run
 ```bash
