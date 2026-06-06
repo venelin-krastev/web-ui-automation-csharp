@@ -1,3 +1,5 @@
+![.NET](https://img.shields.io/badge/.NET-10-purple) ![Selenium](https://img.shields.io/badge/Selenium-4.43-green) ![NUnit](https://img.shields.io/badge/NUnit-4.3-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+
 # Web UI Automation — C# / Selenium
 
 Automated UI tests for [the-internet.herokuapp.com](https://the-internet.herokuapp.com) using Selenium WebDriver, C#, and NUnit.
