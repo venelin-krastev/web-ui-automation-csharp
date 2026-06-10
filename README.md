@@ -24,6 +24,7 @@ Pages/
   IFramePage.cs          # Switching into and out of IFrames
   WindowPage.cs          # Multiple window/tab handling
   DragAndDropPage.cs     # Drag and drop with Actions class
+  ContextMenuPage.cs     # Right-click context menu with Actions class
 LoginTests.cs            # Login success and failure scenarios
 DropdownTests.cs         # Dropdown selection by text and value
 CheckboxTests.cs         # Checkbox check/uncheck and default state
@@ -34,6 +35,7 @@ HoverTests.cs            # Hover over avatars and caption visibility
 IFrameTests.cs           # Switching into and out of IFrames
 WindowTests.cs           # Multiple window and tab switching
 DragAndDropTests.cs      # Drag and drop interaction
+ContextMenuTests.cs      # Right-click context menu and alert handling
 ```
 
 ## Tests
@@ -109,6 +111,12 @@ DragAndDropTests.cs      # Drag and drop interaction
 | `Should_HaveCorrectInitialState_When_PageLoads` | Columns A and B are in correct initial order |
 | `Should_SwapColumns_When_ColumnADraggedToColumnB` | Dragging column A to B swaps their positions |
 
+### ContextMenuTests.cs
+| Test | Description |
+|------|-------------|
+| `Should_ShowAlert_When_HotspotRightClicked` | Right-click triggers alert with context menu message |
+| `Should_DismissAlert_When_AlertAccepted` | Alert is dismissed after accepting |
+
 ## Key Concepts Demonstrated
 - Page Object Model (POM)
 - Explicit waits with `WebDriverWait`
@@ -118,7 +126,7 @@ DragAndDropTests.cs      # Drag and drop interaction
 - Parameterized tests with `[TestCase]`
 - Arrange / Act / Assert structure
 - `SwitchTo().Alert()` for browser dialog handling
-- `Actions` class for mouse hover and drag and drop interactions
+- `Actions` class for mouse hover, drag and drop, and right-click interactions
 - `SendKeys` for file upload (bypassing OS dialog)
 - Test data management with `File.WriteAllText` / `File.Delete`
 - `SwitchTo().Frame()` and `SwitchTo().DefaultContent()` for IFrame handling
