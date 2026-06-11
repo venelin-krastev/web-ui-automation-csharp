@@ -30,11 +30,11 @@ public class ContextMenuPage
     public string GetAlertText()
     {
         wait.Until(d => d.SwitchTo().Alert() != null);
-        return driver.SwitchTo().Alert().Text;
+        return driver.SwitchTo().Alert()!.Text ?? string.Empty;
     }
 
     public void AcceptAlert()
     {
-        driver.SwitchTo().Alert().Accept();
+        driver.SwitchTo().Alert()!.Accept();
     }
 }
