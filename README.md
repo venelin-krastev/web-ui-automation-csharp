@@ -25,6 +25,7 @@ Pages/
   WindowPage.cs          # Multiple window/tab handling
   DragAndDropPage.cs     # Drag and drop with Actions class
   ContextMenuPage.cs     # Right-click context menu with Actions class
+BaseTest.cs              # Abstract base class with shared driver setup and teardown
 LoginTests.cs            # Login success and failure scenarios
 DropdownTests.cs         # Dropdown selection by text and value
 CheckboxTests.cs         # Checkbox check/uncheck and default state
@@ -116,6 +117,11 @@ ContextMenuTests.cs      # Right-click context menu and alert handling
 |------|-------------|
 | `Should_ShowAlert_When_HotspotRightClicked` | Right-click triggers alert with context menu message |
 | `Should_DismissAlert_When_AlertAccepted` | Alert is dismissed after accepting |
+
+## Roadmap
+- [ ] Migrate all test classes to inherit from `BaseTest`
+- [ ] Add GitHub Actions CI/CD pipeline
+- [ ] Add screenshot on test failure via `BaseTest`
 
 ## Key Concepts Demonstrated
 - Page Object Model (POM)
