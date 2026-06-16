@@ -1,20 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class LoginTests
+public class LoginTests : BaseTest
 {
-    private IWebDriver driver;
-    private LoginPage loginPage;
+    private LoginPage loginPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new OpenQA.Selenium.Chrome.ChromeDriver();
-        loginPage = new LoginPage(driver);
+        base.Setup();
+        loginPage = new LoginPage(Driver);
     }
 
     [Test]
@@ -27,7 +25,7 @@ public class LoginTests
         loginPage.Login("tomsmith", "SuperSecretPassword!");
 
         // Assert
-        Assert.That(driver.Url, Does.Contain("/secure"),
+        Assert.That(Driver.Url, Does.Contain("/secure"),
             "Successful login should redirect to /secure");
     }
 
@@ -71,12 +69,5 @@ public class LoginTests
         // Assert
         Assert.That(loginPage.GetFlashMessage(), Does.Contain("Your username is invalid!"),
             "Wrong username should show error flash message");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }
