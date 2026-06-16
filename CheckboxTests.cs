@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class CheckboxTests
+public class CheckboxTests : BaseTest
 {
-    private IWebDriver driver;
-    private CheckboxPage checkboxPage;
+    private CheckboxPage checkboxPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        checkboxPage = new CheckboxPage(driver);
+        base.Setup();
+        checkboxPage = new CheckboxPage(Driver);
     }
 
     [Test]
@@ -55,12 +52,5 @@ public class CheckboxTests
         // Assert
         Assert.That(checkboxPage.IsChecked(1), Is.True,
             "Checkbox 2 should be checked by default on page load");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }
