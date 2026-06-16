@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class DropdownTests
+public class DropdownTests : BaseTest
 {
-    private IWebDriver driver;
-    private DropdownPage dropdownPage;
+    private DropdownPage dropdownPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        dropdownPage = new DropdownPage(driver);
+        base.Setup();
+        dropdownPage = new DropdownPage(Driver);
     }
 
     [Test]
@@ -44,12 +41,5 @@ public class DropdownTests
         dropdownPage.SelectByText(option);
         Assert.That(dropdownPage.GetSelectedOption(), Is.EqualTo(option),
             $"Selected option should be {option}");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }
