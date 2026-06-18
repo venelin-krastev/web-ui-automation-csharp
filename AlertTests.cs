@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class AlertTests
+public class AlertTests : BaseTest
 {
-    private IWebDriver driver;
-    private AlertPage alertPage;
+    private AlertPage alertPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        alertPage = new AlertPage(driver);
+        base.Setup();
+        alertPage = new AlertPage(Driver);
     }
 
     [Test]
@@ -79,10 +76,4 @@ public class AlertTests
             "Prompt alert should show the typed text in result");
     }
 
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
-    }
 }
