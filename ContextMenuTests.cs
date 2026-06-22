@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class ContextMenuTests
+public class ContextMenuTests : BaseTest
 {
-    private IWebDriver driver;
-    private ContextMenuPage contextMenuPage;
+    private ContextMenuPage contextMenuPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        contextMenuPage = new ContextMenuPage(driver);
+        base.Setup();
+        contextMenuPage = new ContextMenuPage(Driver);
     }
 
     [Test]
@@ -44,14 +41,7 @@ public class ContextMenuTests
         contextMenuPage.AcceptAlert();
 
         // Assert
-        Assert.That(driver.WindowHandles.Count, Is.EqualTo(1),
+        Assert.That(Driver.WindowHandles.Count, Is.EqualTo(1),
             "After accepting alert, browser should return to normal state");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }
