@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class IFrameTests
+public class IFrameTests : BaseTest
 {
-    private IWebDriver driver;
-    private IFramePage iFramePage;
+    private IFramePage iFramePage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        iFramePage = new IFramePage(driver);
+        base.Setup();
+        iFramePage = new IFramePage(Driver);
     }
 
     [Test]
@@ -47,12 +44,5 @@ public class IFrameTests
         // Assert
         Assert.That(iFramePage.GetPageHeading(), Does.Contain("An iFrame"),
             "After switching back to main content, page heading should be accessible");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }

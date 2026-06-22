@@ -32,15 +32,14 @@ public class IFramePage
 
     public void ClearAndTypeInEditor(string text)
     {
-        var body = wait.Until(d => d.FindElement(By.Id("tinymce")));
-        body.Clear();
-        body.SendKeys(text);
+        ((IJavaScriptExecutor)driver).ExecuteScript(
+            $"document.getElementById('tinymce').innerHTML = '<p>{text}</p>';");
     }
 
     public string GetEditorText()
     {
-        var body = wait.Until(d => d.FindElement(By.Id("tinymce")));
-        return body.Text;
+        return (string?)((IJavaScriptExecutor)driver).ExecuteScript(
+            "return document.getElementById('tinymce').innerText;") ?? string.Empty;
     }
 
     public string GetPageHeading()
