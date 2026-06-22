@@ -1,22 +1,19 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class FileUploadTests
+public class FileUploadTests : BaseTest
 {
-    private IWebDriver driver;
-    private FileUploadPage fileUploadPage;
-    private string testFilePath;
+    private FileUploadPage fileUploadPage = null!;
+    private string testFilePath = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        fileUploadPage = new FileUploadPage(driver);
+        base.Setup();
+        fileUploadPage = new FileUploadPage(Driver);
         testFilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "testfile.txt");
         File.WriteAllText(testFilePath, "test content");
     }
@@ -50,10 +47,9 @@ public class FileUploadTests
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
-        driver.Quit();
-        driver.Dispose();
+        base.TearDown();
         if (File.Exists(testFilePath))
             File.Delete(testFilePath);
     }
