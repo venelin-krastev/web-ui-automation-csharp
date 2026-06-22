@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class HoverTests
+public class HoverTests : BaseTest
 {
-    private IWebDriver driver;
-    private HoverPage hoverPage;
+    private HoverPage hoverPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        hoverPage = new HoverPage(driver);
+        base.Setup();
+        hoverPage = new HoverPage(Driver);
     }
 
     [Test]
@@ -60,12 +57,5 @@ public class HoverTests
         // Assert
         Assert.That(hoverPage.GetAvatarCaption(index), Does.Contain(expectedUser),
             $"Hovering over avatar {index} should show {expectedUser} caption");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }

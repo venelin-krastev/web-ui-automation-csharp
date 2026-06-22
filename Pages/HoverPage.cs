@@ -20,16 +20,19 @@ public class HoverPage
         driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/hovers");
     }
 
+    private IList<IWebElement> GetAvatars() =>
+        wait.Until(d => d.FindElements(By.CssSelector(".figure")) is { Count: > 0 } els ? els : null)!;
+
     public void HoverOverAvatar(int index)
     {
-        var avatars = driver.FindElements(By.CssSelector(".figure"));
+        var avatars = GetAvatars();
         var actions = new Actions(driver);
         actions.MoveToElement(avatars[index]).Perform();
     }
 
     public string GetAvatarCaption(int index)
     {
-        var avatars = driver.FindElements(By.CssSelector(".figure"));
+        var avatars = GetAvatars();
         wait.Until(d => avatars[index].FindElement(By.CssSelector(".figcaption")).Displayed);
         return avatars[index].FindElement(By.CssSelector(".figcaption h5")).Text;
     }
