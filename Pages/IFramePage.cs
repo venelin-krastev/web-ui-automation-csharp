@@ -33,13 +33,13 @@ public class IFramePage
     public void ClearAndTypeInEditor(string text)
     {
         ((IJavaScriptExecutor)driver).ExecuteScript(
-            $"document.getElementById('tinymce').innerHTML = '<p>{text}</p>';");
+            $"parent.tinyMCE.activeEditor.setContent('<p>{text}</p>');");
     }
 
     public string GetEditorText()
     {
         return (string?)((IJavaScriptExecutor)driver).ExecuteScript(
-            "return document.getElementById('tinymce').innerText;") ?? string.Empty;
+            "return parent.tinyMCE.activeEditor.getContent({format: 'text'});") ?? string.Empty;
     }
 
     public string GetPageHeading()
