@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class DragAndDropTests
+public class DragAndDropTests : BaseTest
 {
-    private IWebDriver driver;
-    private DragAndDropPage dragAndDropPage;
+    private DragAndDropPage dragAndDropPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        dragAndDropPage = new DragAndDropPage(driver);
+        base.Setup();
+        dragAndDropPage = new DragAndDropPage(Driver);
     }
 
     [Test]
@@ -45,12 +42,5 @@ public class DragAndDropTests
             "Column A should display 'A' on page load");
         Assert.That(dragAndDropPage.GetColumnBHeader(), Is.EqualTo("B"),
             "Column B should display 'B' on page load");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }
