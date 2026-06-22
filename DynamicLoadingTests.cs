@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class DynamicLoadingTests
+public class DynamicLoadingTests : BaseTest
 {
-    private IWebDriver driver;
-    private DynamicLoadingPage dynamicLoadingPage;
+    private DynamicLoadingPage dynamicLoadingPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        dynamicLoadingPage = new DynamicLoadingPage(driver);
+        base.Setup();
+        dynamicLoadingPage = new DynamicLoadingPage(Driver);
     }
 
     [Test]
@@ -44,12 +41,5 @@ public class DynamicLoadingTests
         // Assert
         Assert.That(dynamicLoadingPage.GetFinishText(), Does.Contain("Hello World!"),
             "Example 2 should show 'Hello World!' after loading completes");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }
