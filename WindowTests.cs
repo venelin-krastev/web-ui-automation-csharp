@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SeleniumBasics.Pages;
 
 namespace SeleniumBasics;
 
 [TestFixture]
-public class WindowTests
+public class WindowTests : BaseTest
 {
-    private IWebDriver driver;
-    private WindowPage windowPage;
+    private WindowPage windowPage = null!;
 
     [SetUp]
-    public void Setup()
+    public override void Setup()
     {
-        driver = new ChromeDriver();
-        windowPage = new WindowPage(driver);
+        base.Setup();
+        windowPage = new WindowPage(Driver);
     }
 
     [Test]
@@ -63,12 +60,5 @@ public class WindowTests
         // Assert
         Assert.That(windowPage.GetCurrentPageTitle(), Does.Contain("The Internet"),
             "After switching back, should be on the original window");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        driver.Quit();
-        driver.Dispose();
     }
 }
