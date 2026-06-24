@@ -119,13 +119,16 @@ ContextMenuTests.cs      # Right-click context menu and alert handling
 | `Should_DismissAlert_When_AlertAccepted` | Alert is dismissed after accepting |
 
 ## Roadmap
-- [ ] Migrate all test classes to inherit from `BaseTest`
-- [ ] Add GitHub Actions CI/CD pipeline
-- [ ] Add screenshot on test failure via `BaseTest`
+- [x] Migrate all test classes to inherit from `BaseTest`
+- [x] Add GitHub Actions CI/CD pipeline
+- [x] Add screenshot on test failure via `BaseTest`
 
 ## Key Concepts Demonstrated
 - Page Object Model (POM)
 - Explicit waits with `WebDriverWait`
+- `abstract` base class with `virtual/override` for shared setup and teardown
+- Screenshot on test failure via `ITakesScreenshot`
+- Headless Chrome in CI via `ChromeOptions` and `CI` env var
 - `SelectElement` for dropdown interaction
 - `FindElements` for multiple element selection
 - `.Selected` property for checkbox state
