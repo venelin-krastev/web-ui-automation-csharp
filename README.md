@@ -1,4 +1,4 @@
-![.NET](https://img.shields.io/badge/.NET-10-purple) ![Selenium](https://img.shields.io/badge/Selenium-4.43-green) ![NUnit](https://img.shields.io/badge/NUnit-4.3-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+![.NET](https://img.shields.io/badge/.NET-10-purple) ![Selenium](https://img.shields.io/badge/Selenium-4.43-green) ![NUnit](https://img.shields.io/badge/NUnit-4.3-blue) ![Tests](https://img.shields.io/badge/tests-33-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green)
 
 # Web UI Automation — C# / Selenium
 
