@@ -32,6 +32,7 @@ public class WindowPage
             if (handle != originalHandle)
             {
                 driver.SwitchTo().Window(handle);
+                wait.Until(d => d.Title.Length > 0);
                 return;
             }
         }
