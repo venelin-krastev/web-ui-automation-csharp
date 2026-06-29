@@ -147,4 +147,4 @@ dotnet test
 ```
 
 ## Author
-Venelin Krustev — Junior QA Automation Engineer, Sofia
+Venelin Krastev — Junior QA Automation Engineer, Sofia
