@@ -1,6 +1,6 @@
-# Interview Prep — web-ui-automation-csharp
+# Design Notes — web-ui-automation-csharp
 
-Real questions a senior QA interviewer would ask when reviewing this project.
+Decisions made in this project, why, and the trade-offs involved.
 
 ---
 
@@ -31,6 +31,14 @@ A: A `virtual` method has a full implementation in the base class — subclasses
 
 **Q: How does this apply to test automation? Give a concrete example.**
 A: `BaseTest` uses `virtual` for `SetUp` so individual test classes can override it to add extra setup steps while still calling `base.SetUp()`. If the base declared a method `abstract`, every single test class would be forced to implement it — too rigid for shared infrastructure.
+
+---
+
+## 2026-09-30 — Driver is typed as IWebDriver, not ChromeDriver
+
+**Decision:** `BaseTest.Driver` is declared as `protected IWebDriver Driver { get; private set; }`, even though the `[SetUp]` method only ever constructs a `new ChromeDriver(options)`.
+**Why:** `IWebDriver` is the interface that `ChromeDriver`, `FirefoxDriver`, and every other Selenium driver implements — it defines the contract (`FindElement`, `Navigate`, `Quit`, ...) without committing to a specific browser. Every test class and every Page Object interacts with `Driver` only through that interface, so swapping the concrete browser later (e.g., adding Firefox for cross-browser coverage) means changing one line inside `BaseTest.Setup()` — `Driver = new FirefoxDriver(options);` — with zero changes anywhere else in the suite. Typing the field as `ChromeDriver` directly would leak that concrete choice into every test class that touches `Driver`, and locking in a browser-specific type for no benefit — nothing in the tests actually needs Chrome-specific members.
+**Trade-off:** none — this is standard "program to an interface, not an implementation" practice, not a compromise. The only cost would be if the suite needed a Chrome-specific API not exposed by `IWebDriver`, which it doesn't.
 
 ---
 
