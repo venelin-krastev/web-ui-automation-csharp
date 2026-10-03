@@ -146,6 +146,8 @@ Prevents instantiation of the base class directly — only concrete test classes
 - Test data management with `File.WriteAllText` / `File.Delete`
 - `SwitchTo().Frame()` and `SwitchTo().DefaultContent()` for IFrame handling
 - Multiple window/tab management with `WindowHandles` and `SwitchTo().Window()`
+- `IWebDriver` interface for driver field — program to the interface, not `ChromeDriver` concrete type; swapping to Firefox requires one line change in `BaseTest`, zero changes in test classes or Page Objects
+- `StaleElementReferenceException` retry pattern — catch inside `wait.Until` lambda and return `false` to keep polling; needed when a page navigation or AJAX update replaces the DOM element between find and interact
 
 ## How to Run
 ```bash
