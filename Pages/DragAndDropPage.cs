@@ -24,8 +24,14 @@ public class DragAndDropPage
     {
         var source = wait.Until(d => d.FindElement(By.Id("column-a")));
         var target = wait.Until(d => d.FindElement(By.Id("column-b")));
-        var actions = new Actions(driver);
-        actions.DragAndDrop(source, target).Perform();
+
+        // DragAndDrop() uses HTML5 drag events which headless Chrome on Linux does not fire reliably.
+        // ClickAndHold + MoveToElement + Release uses low-level mouse events that work cross-platform.
+        new Actions(driver)
+            .ClickAndHold(source)
+            .MoveToElement(target)
+            .Release()
+            .Perform();
     }
 
     public string GetColumnAHeader()

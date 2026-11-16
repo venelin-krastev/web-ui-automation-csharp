@@ -15,9 +15,11 @@ public abstract class BaseTest
         var options = new ChromeOptions();
         if (Environment.GetEnvironmentVariable("CI") == "true")
         {
-            options.AddArgument("--headless");
+            options.AddArgument("--headless=new");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument("--disable-gpu");
+            options.AddArgument("--window-size=1920,1080");
         }
         Driver = new ChromeDriver(options);
     }
